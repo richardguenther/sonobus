@@ -1,0 +1,60 @@
+{
+  "Name": "SonoBus",
+  "Version": "1.7.2",
+  "Factory Info": {
+    "Vendor": "Sonosaurus",
+    "URL": "",
+    "E-Mail": "",
+    "Flags": {
+      "Unicode": true,
+      "Classes Discardable": false,
+      "Component Non Discardable": false,
+    },
+  },
+  "Classes": [
+    {
+      "CID": "ABCDEF019182FAEB536F6E6F4E427573",
+      "Category": "Audio Module Class",
+      "Name": "SonoBus",
+      "Vendor": "Sonosaurus",
+      "Version": "1.7.2",
+      "SDKVersion": "VST 3.7.8",
+      "Sub Categories": [
+        "Fx",
+        "Network",
+      ],
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "ABCDEF011234ABCD536F6E6F4E427573",
+      "Category": "Component Controller Class",
+      "Name": "SonoBus",
+      "Vendor": "Sonosaurus",
+      "Version": "1.7.2",
+      "SDKVersion": "VST 3.7.8",
+      "Sub Categories": [
+        "Fx",
+        "Network",
+      ],
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "ABCDEF01C0DEF00D536F6E6F4E427573",
+      "Category": "Plugin Compatibility Class",
+      "Name": "SonoBus",
+      "Vendor": "Sonosaurus",
+      "Version": "1.7.2",
+      "SDKVersion": "VST 3.7.8",
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+  ],
+}

@@ -1,0 +1,1005 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix bufs:  <http://lv2plug.in/ns/ext/buf-size#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix midi:  <http://lv2plug.in/ns/ext/midi#> .
+@prefix opts:  <http://lv2plug.in/ns/ext/options#> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+@prefix patch: <http://lv2plug.in/ns/ext/patch#> .
+@prefix pg:    <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix plug:  <https://sonobus.net/lv2/sonobus:> .
+@prefix pprop: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rsz:   <http://lv2plug.in/ns/ext/resize-port#> .
+@prefix state: <http://lv2plug.in/ns/ext/state#> .
+@prefix time:  <http://lv2plug.in/ns/ext/time#> .
+@prefix ui:    <http://lv2plug.in/ns/extensions/ui#> .
+@prefix units: <http://lv2plug.in/ns/extensions/units#> .
+@prefix urid:  <http://lv2plug.in/ns/ext/urid#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+plug:ingain
+	a lv2:Parameter ;
+	rdfs:label "In Gain" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 4 .
+
+plug:inmonmonopan
+	a lv2:Parameter ;
+	rdfs:label "In Pan" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum -1 ;
+	lv2:maximum 1 .
+
+plug:inmonpan1
+	a lv2:Parameter ;
+	rdfs:label "In Pan 1" ;
+	rdfs:range atom:Float ;
+	lv2:default -1 ;
+	lv2:minimum -1 ;
+	lv2:maximum 1 .
+
+plug:inmonpan2
+	a lv2:Parameter ;
+	rdfs:label "In Pan 2" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum -1 ;
+	lv2:maximum 1 .
+
+plug:dry
+	a lv2:Parameter ;
+	rdfs:label "Dry Level" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:wet
+	a lv2:Parameter ;
+	rdfs:label "Output Level" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 2 .
+
+plug:defnetbuf
+	a lv2:Parameter ;
+	rdfs:label "Default Jitter Buffer Time" ;
+	rdfs:range atom:Float ;
+	lv2:default 0.001 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:sendchannels
+	a lv2:Parameter ;
+	rdfs:label "Send Channels" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 2	 ;
+	lv2:portProperty lv2:enumeration ;
+	lv2:scalePoint [
+		rdfs:label "Match # Inputs" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "Send Mono" ;
+		rdf:value 1 ;
+	], [
+		rdfs:label "Send Stereo" ;
+		rdf:value 2 ;
+	] .
+
+plug:metenabled
+	a lv2:Parameter ;
+	rdfs:label "Metronome Enabled" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:sendmetaudio
+	a lv2:Parameter ;
+	rdfs:label "Send Metronome Audio" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:metgain
+	a lv2:Parameter ;
+	rdfs:label "Metronome Gain" ;
+	rdfs:range atom:Float ;
+	lv2:default 0.5 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:mettempo
+	a lv2:Parameter ;
+	rdfs:label "Metronome Tempo" ;
+	rdfs:range atom:Float ;
+	lv2:default 100 ;
+	lv2:minimum 10 ;
+	lv2:maximum 400 .
+
+plug:sendfileaudio
+	a lv2:Parameter ;
+	rdfs:label "Send Playback Audio" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:sendsoundboardaudio
+	a lv2:Parameter ;
+	rdfs:label "Send Soundboard Audio" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:hearlatencytest
+	a lv2:Parameter ;
+	rdfs:label "Hear Latency Test" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:metisrecorded
+	a lv2:Parameter ;
+	rdfs:label "Record Metronome to File" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:mainreverbenabled
+	a lv2:Parameter ;
+	rdfs:label "Main Reverb Enabled" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:nmainreverblevel
+	a lv2:Parameter ;
+	rdfs:label "Main Reverb Level" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:mainreverbsize
+	a lv2:Parameter ;
+	rdfs:label "Main Reverb Size" ;
+	rdfs:range atom:Float ;
+	lv2:default 0.15 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:mainreverbdamp
+	a lv2:Parameter ;
+	rdfs:label "Main Reverb Damping" ;
+	rdfs:range atom:Float ;
+	lv2:default 0.5 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:mainreverbpredelay
+	a lv2:Parameter ;
+	rdfs:label "Pre-Delay Time" ;
+	rdfs:range atom:Float ;
+	lv2:default 20 ;
+	lv2:minimum 0 ;
+	lv2:maximum 100 .
+
+plug:mainreverbmodel
+	a lv2:Parameter ;
+	rdfs:label "Main Reverb Model" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 2	 ;
+	lv2:portProperty lv2:enumeration ;
+	lv2:scalePoint [
+		rdfs:label "Freeverb" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "MVerb" ;
+		rdf:value 1 ;
+	], [
+		rdfs:label "Zita" ;
+		rdf:value 2 ;
+	] .
+
+plug:mastsendmute
+	a lv2:Parameter ;
+	rdfs:label "Main Send Mute" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:mastrecvmute
+	a lv2:Parameter ;
+	rdfs:label "Main Receive Mute" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:mastinmute
+	a lv2:Parameter ;
+	rdfs:label "Main In Mute" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:mastmonsolo
+	a lv2:Parameter ;
+	rdfs:label "Main Monitor Solo" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:defnetauto
+	a lv2:Parameter ;
+	rdfs:label "Def Auto Net Buffer Mode" ;
+	rdfs:range atom:Float ;
+	lv2:default 2 ;
+	lv2:minimum 0 ;
+	lv2:maximum 3	 ;
+	lv2:portProperty lv2:enumeration ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "Auto-Increase" ;
+		rdf:value 1 ;
+	], [
+		rdfs:label "Auto-Full" ;
+		rdf:value 2 ;
+	], [
+		rdfs:label "Initial-Auto" ;
+		rdf:value 3 ;
+	] .
+
+plug:defsendqual
+	a lv2:Parameter ;
+	rdfs:label "Def Send Format" ;
+	rdfs:range atom:Float ;
+	lv2:default 4 ;
+	lv2:minimum 0 ;
+	lv2:maximum 14 .
+
+plug:dynamicresampling
+	a lv2:Parameter ;
+	rdfs:label "Dynamic Resampling" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:reconnectlast
+	a lv2:Parameter ;
+	rdfs:label "Reconnect Last" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:defPeerLevel
+	a lv2:Parameter ;
+	rdfs:label "Default User Level" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:syncMetHost
+	a lv2:Parameter ;
+	rdfs:label "Sync to Host" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:inreverblevel
+	a lv2:Parameter ;
+	rdfs:label "Input Reverb Level" ;
+	rdfs:range atom:Float ;
+	lv2:default 1 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:inreverbsize
+	a lv2:Parameter ;
+	rdfs:label "Input Reverb Size" ;
+	rdfs:range atom:Float ;
+	lv2:default 0.15 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:inreverbdamp
+	a lv2:Parameter ;
+	rdfs:label "Input Reverb Damping" ;
+	rdfs:range atom:Float ;
+	lv2:default 0.5 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1 .
+
+plug:inreverbpredelay
+	a lv2:Parameter ;
+	rdfs:label "Input Reverb Pre-Delay Time" ;
+	rdfs:range atom:Float ;
+	lv2:default 20 ;
+	lv2:minimum 0 ;
+	lv2:maximum 100 .
+
+plug:syncMetFile
+	a lv2:Parameter ;
+	rdfs:label "Sync Met to File Playback" ;
+	rdfs:range atom:Float ;
+	lv2:default 0 ;
+	lv2:minimum 0 ;
+	lv2:maximum 1	 ;
+	lv2:portProperty lv2:enumeration , lv2:toggled ;
+	lv2:scalePoint [
+		rdfs:label "Off" ;
+		rdf:value 0 ;
+	], [
+		rdfs:label "On" ;
+		rdf:value 1 ;
+	] .
+
+plug:input_group_1
+	a pg:InputGroup ;
+	lv2:name "Main In" ;
+	lv2:symbol "input_group_1" .
+
+plug:input_group_2
+	a pg:InputGroup ;
+	lv2:name "Aux 1 In" ;
+	lv2:symbol "input_group_2" .
+
+plug:input_group_3
+	a pg:InputGroup ;
+	lv2:name "Aux 2 In" ;
+	lv2:symbol "input_group_3" .
+
+plug:input_group_4
+	a pg:InputGroup ;
+	lv2:name "Aux 3 In" ;
+	lv2:symbol "input_group_4" .
+
+plug:input_group_5
+	a pg:InputGroup ;
+	lv2:name "Aux 4 In" ;
+	lv2:symbol "input_group_5" .
+
+plug:input_group_6
+	a pg:InputGroup ;
+	lv2:name "Aux 5 In" ;
+	lv2:symbol "input_group_6" .
+
+plug:input_group_7
+	a pg:InputGroup ;
+	lv2:name "Aux 6 In" ;
+	lv2:symbol "input_group_7" .
+
+plug:input_group_8
+	a pg:InputGroup ;
+	lv2:name "Aux 7 In" ;
+	lv2:symbol "input_group_8" .
+
+plug:input_group_9
+	a pg:InputGroup ;
+	lv2:name "Aux 8 In" ;
+	lv2:symbol "input_group_9" .
+
+plug:output_group_1
+	a pg:OutputGroup ;
+	lv2:name "Mix Out" ;
+	lv2:symbol "output_group_1" .
+
+plug:output_group_2
+	a pg:OutputGroup ;
+	lv2:name "Aux 1 Out" ;
+	lv2:symbol "output_group_2" .
+
+plug:output_group_3
+	a pg:OutputGroup ;
+	lv2:name "Aux 2 Out" ;
+	lv2:symbol "output_group_3" .
+
+plug:output_group_4
+	a pg:OutputGroup ;
+	lv2:name "Aux 3 Out" ;
+	lv2:symbol "output_group_4" .
+
+plug:output_group_5
+	a pg:OutputGroup ;
+	lv2:name "Aux 4 Out" ;
+	lv2:symbol "output_group_5" .
+
+plug:output_group_6
+	a pg:OutputGroup ;
+	lv2:name "Aux 5 Out" ;
+	lv2:symbol "output_group_6" .
+
+plug:output_group_7
+	a pg:OutputGroup ;
+	lv2:name "Aux 6 Out" ;
+	lv2:symbol "output_group_7" .
+
+plug:output_group_8
+	a pg:OutputGroup ;
+	lv2:name "Aux 7 Out" ;
+	lv2:symbol "output_group_8" .
+
+plug:output_group_9
+	a pg:OutputGroup ;
+	lv2:name "Aux 8 Out" ;
+	lv2:symbol "output_group_9" .
+
+<https://sonobus.net/lv2/sonobus>
+	ui:ui <https://sonobus.net/lv2/sonobus:UI> ;
+	a lv2:Plugin ;
+	doap:name "SonoBus" ;
+	doap:description "SonoBus - Network Audio" ;
+	lv2:minorVersion 7 ;
+	lv2:microVersion 2 ;
+	doap:maintainer [
+		a foaf:Person ;
+		foaf:name "Sonosaurus" ;
+		foaf:homepage <> ;
+		foaf:mbox <> ;
+	] ;
+	doap:release [
+		a doap:Version ;
+		doap:revision "1.7.2" ;
+	] ;
+	lv2:optionalFeature
+		lv2:hardRTCapable ;
+	lv2:extensionData
+		state:interface ;
+	lv2:requiredFeature
+		urid:map ,
+		opts:options ,
+		bufs:boundedBlockLength ;
+	pg:mainInput plug:input_group_1 ;
+	pg:mainOutput plug:output_group_1 ;
+	patch:writable
+		plug:ingain ,
+		plug:inmonmonopan ,
+		plug:inmonpan1 ,
+		plug:inmonpan2 ,
+		plug:dry ,
+		plug:wet ,
+		plug:defnetbuf ,
+		plug:sendchannels ,
+		plug:metenabled ,
+		plug:sendmetaudio ,
+		plug:metgain ,
+		plug:mettempo ,
+		plug:sendfileaudio ,
+		plug:sendsoundboardaudio ,
+		plug:hearlatencytest ,
+		plug:metisrecorded ,
+		plug:mainreverbenabled ,
+		plug:nmainreverblevel ,
+		plug:mainreverbsize ,
+		plug:mainreverbdamp ,
+		plug:mainreverbpredelay ,
+		plug:mainreverbmodel ,
+		plug:mastsendmute ,
+		plug:mastrecvmute ,
+		plug:mastinmute ,
+		plug:mastmonsolo ,
+		plug:defnetauto ,
+		plug:defsendqual ,
+		plug:dynamicresampling ,
+		plug:reconnectlast ,
+		plug:defPeerLevel ,
+		plug:syncMetHost ,
+		plug:inreverblevel ,
+		plug:inreverbsize ,
+		plug:inreverbdamp ,
+		plug:inreverbpredelay ,
+		plug:syncMetFile ;
+	patch:readable
+		plug:ingain ,
+		plug:inmonmonopan ,
+		plug:inmonpan1 ,
+		plug:inmonpan2 ,
+		plug:dry ,
+		plug:wet ,
+		plug:defnetbuf ,
+		plug:sendchannels ,
+		plug:metenabled ,
+		plug:sendmetaudio ,
+		plug:metgain ,
+		plug:mettempo ,
+		plug:sendfileaudio ,
+		plug:sendsoundboardaudio ,
+		plug:hearlatencytest ,
+		plug:metisrecorded ,
+		plug:mainreverbenabled ,
+		plug:nmainreverblevel ,
+		plug:mainreverbsize ,
+		plug:mainreverbdamp ,
+		plug:mainreverbpredelay ,
+		plug:mainreverbmodel ,
+		plug:mastsendmute ,
+		plug:mastrecvmute ,
+		plug:mastinmute ,
+		plug:mastmonsolo ,
+		plug:defnetauto ,
+		plug:defsendqual ,
+		plug:dynamicresampling ,
+		plug:reconnectlast ,
+		plug:defPeerLevel ,
+		plug:syncMetHost ,
+		plug:inreverblevel ,
+		plug:inreverbsize ,
+		plug:inreverbdamp ,
+		plug:inreverbpredelay ,
+		plug:syncMetFile ;
+	lv2:port [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 0 ;
+		lv2:symbol "audio_in_1" ;
+		lv2:name "Audio In 1" ;
+		pg:group plug:input_group_1 ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 1 ;
+		lv2:symbol "audio_in_2" ;
+		lv2:name "Audio In 2" ;
+		pg:group plug:input_group_1 ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 2 ;
+		lv2:symbol "audio_in_3" ;
+		lv2:name "Audio In 3" ;
+		pg:group plug:input_group_2 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 3 ;
+		lv2:symbol "audio_in_4" ;
+		lv2:name "Audio In 4" ;
+		pg:group plug:input_group_2 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 4 ;
+		lv2:symbol "audio_in_5" ;
+		lv2:name "Audio In 5" ;
+		pg:group plug:input_group_3 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 5 ;
+		lv2:symbol "audio_in_6" ;
+		lv2:name "Audio In 6" ;
+		pg:group plug:input_group_3 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 6 ;
+		lv2:symbol "audio_in_7" ;
+		lv2:name "Audio In 7" ;
+		pg:group plug:input_group_4 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 7 ;
+		lv2:symbol "audio_in_8" ;
+		lv2:name "Audio In 8" ;
+		pg:group plug:input_group_4 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 8 ;
+		lv2:symbol "audio_in_9" ;
+		lv2:name "Audio In 9" ;
+		pg:group plug:input_group_5 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 9 ;
+		lv2:symbol "audio_in_10" ;
+		lv2:name "Audio In 10" ;
+		pg:group plug:input_group_5 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 10 ;
+		lv2:symbol "audio_in_11" ;
+		lv2:name "Audio In 11" ;
+		pg:group plug:input_group_6 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 11 ;
+		lv2:symbol "audio_in_12" ;
+		lv2:name "Audio In 12" ;
+		pg:group plug:input_group_6 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 12 ;
+		lv2:symbol "audio_in_13" ;
+		lv2:name "Audio In 13" ;
+		pg:group plug:input_group_7 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 13 ;
+		lv2:symbol "audio_in_14" ;
+		lv2:name "Audio In 14" ;
+		pg:group plug:input_group_7 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 14 ;
+		lv2:symbol "audio_in_15" ;
+		lv2:name "Audio In 15" ;
+		pg:group plug:input_group_8 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 15 ;
+		lv2:symbol "audio_in_16" ;
+		lv2:name "Audio In 16" ;
+		pg:group plug:input_group_8 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 16 ;
+		lv2:symbol "audio_in_17" ;
+		lv2:name "Audio In 17" ;
+		pg:group plug:input_group_9 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:InputPort , lv2:AudioPort ;
+		lv2:index 17 ;
+		lv2:symbol "audio_in_18" ;
+		lv2:name "Audio In 18" ;
+		pg:group plug:input_group_9 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 18 ;
+		lv2:symbol "audio_out_1" ;
+		lv2:name "Audio Out 1" ;
+		pg:group plug:output_group_1 ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 19 ;
+		lv2:symbol "audio_out_2" ;
+		lv2:name "Audio Out 2" ;
+		pg:group plug:output_group_1 ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 20 ;
+		lv2:symbol "audio_out_3" ;
+		lv2:name "Audio Out 3" ;
+		pg:group plug:output_group_2 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 21 ;
+		lv2:symbol "audio_out_4" ;
+		lv2:name "Audio Out 4" ;
+		pg:group plug:output_group_2 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 22 ;
+		lv2:symbol "audio_out_5" ;
+		lv2:name "Audio Out 5" ;
+		pg:group plug:output_group_3 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 23 ;
+		lv2:symbol "audio_out_6" ;
+		lv2:name "Audio Out 6" ;
+		pg:group plug:output_group_3 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 24 ;
+		lv2:symbol "audio_out_7" ;
+		lv2:name "Audio Out 7" ;
+		pg:group plug:output_group_4 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 25 ;
+		lv2:symbol "audio_out_8" ;
+		lv2:name "Audio Out 8" ;
+		pg:group plug:output_group_4 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 26 ;
+		lv2:symbol "audio_out_9" ;
+		lv2:name "Audio Out 9" ;
+		pg:group plug:output_group_5 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 27 ;
+		lv2:symbol "audio_out_10" ;
+		lv2:name "Audio Out 10" ;
+		pg:group plug:output_group_5 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 28 ;
+		lv2:symbol "audio_out_11" ;
+		lv2:name "Audio Out 11" ;
+		pg:group plug:output_group_6 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 29 ;
+		lv2:symbol "audio_out_12" ;
+		lv2:name "Audio Out 12" ;
+		pg:group plug:output_group_6 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 30 ;
+		lv2:symbol "audio_out_13" ;
+		lv2:name "Audio Out 13" ;
+		pg:group plug:output_group_7 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 31 ;
+		lv2:symbol "audio_out_14" ;
+		lv2:name "Audio Out 14" ;
+		pg:group plug:output_group_7 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 32 ;
+		lv2:symbol "audio_out_15" ;
+		lv2:name "Audio Out 15" ;
+		pg:group plug:output_group_8 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 33 ;
+		lv2:symbol "audio_out_16" ;
+		lv2:name "Audio Out 16" ;
+		pg:group plug:output_group_8 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 34 ;
+		lv2:symbol "audio_out_17" ;
+		lv2:name "Audio Out 17" ;
+		pg:group plug:output_group_9 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#left> ;
+	] , [
+		a lv2:OutputPort , lv2:AudioPort ;
+		lv2:index 35 ;
+		lv2:symbol "audio_out_18" ;
+		lv2:name "Audio Out 18" ;
+		pg:group plug:output_group_9 ;
+		lv2:portProperty lv2:connectionOptional ;
+		lv2:designation <http://lv2plug.in/ns/ext/port-groups#right> ;
+	] , [
+		a lv2:InputPort , atom:AtomPort ;
+		rsz:minimumSize 10856 ;
+		atom:bufferType atom:Sequence ;
+		atom:supports
+			midi:MidiEvent ,
+			patch:Message ,
+			time:Position ;
+		lv2:designation lv2:control ;
+		lv2:index 36 ;
+		lv2:symbol "in" ;
+		lv2:name "In" ;
+	] , [
+		a lv2:OutputPort , atom:AtomPort ;
+		rsz:minimumSize 10856 ;
+		atom:bufferType atom:Sequence ;
+		atom:supports
+			midi:MidiEvent ,
+			patch:Message ;
+		lv2:designation lv2:control ;
+		lv2:index 37 ;
+		lv2:symbol "out" ;
+		lv2:name "Out" ;
+	] , [
+		a lv2:OutputPort , lv2:ControlPort ;
+		lv2:designation lv2:latency ;
+		lv2:symbol "latency" ;
+		lv2:name "Latency" ;
+		lv2:index 38 ;
+		lv2:portProperty lv2:reportsLatency , lv2:integer , lv2:connectionOptional , pprop:notOnGUI ;
+		units:unit units:frame ;
+	] , [
+		a lv2:InputPort , lv2:ControlPort ;
+		lv2:designation lv2:freeWheeling ;
+		lv2:symbol "freeWheeling" ;
+		lv2:name "Free Wheeling" ;
+		lv2:default 0.0 ;
+		lv2:minimum 0.0 ;
+		lv2:maximum 1.0 ;
+		lv2:index 39 ;
+		lv2:portProperty lv2:toggled , lv2:connectionOptional , pprop:notOnGUI ;
+	] , [
+		a lv2:InputPort , lv2:ControlPort ;
+		lv2:designation lv2:enabled ;
+		lv2:symbol "enabled" ;
+		lv2:name "Enabled" ;
+		lv2:default 1.0 ;
+		lv2:minimum 0.0 ;
+		lv2:maximum 1.0 ;
+		lv2:index 40 ;
+		lv2:portProperty lv2:toggled , lv2:connectionOptional , pprop:notOnGUI ;
+	] ;
+	opts:supportedOption
+		bufs:maxBlockLength .
